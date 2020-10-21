@@ -1,12 +1,13 @@
 package main
 
 import (
-	"SQLParser/selecter"
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/naruto-june/SQLParser/selecter"
 )
 
 func main() {

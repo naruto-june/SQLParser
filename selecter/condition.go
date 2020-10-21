@@ -97,8 +97,11 @@ func parseOneCond(tObj Tokens, logic string) (map[string]interface{}, error) {
 			if len(items) != 3 {
 				return nil, errors.New("illegal value:" + v.Raw)
 			}
+
+			valueT := []byte(items[2])
+			valueT = valueT[1 : len(valueT)-1]
 			entElem[items[0]] = map[string]string{
-				opMap[items[1]]: items[2],
+				opMap[items[1]]: string(valueT),
 			}
 
 			idx = idx + 1

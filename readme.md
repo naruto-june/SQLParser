@@ -9,30 +9,30 @@
 ### 使用
 ##### 编译 parser
 ```
-    cd $GOPATH/src/SQLParser/cmd
+    cd $GOPATH/src/github.com/naruto-june/SQLParser/cmd
     go build -o parser parser.go
 ```
 ##### 使用 parser
 ```
-    cd $GOPATH/src/SQLParser/cmd
+    cd $GOPATH/src/github.com/naruto-june/SQLParser/cmd
     ./parser -s "select id from table_name where left(id,2)=\"te\""
 ```
 
 ##### 编译 parserSrv
 ```
-    cd $GOPATH/src/SQLParser/cmd
+    cd $GOPATH/src/github.com/naruto-june/SQLParser/cmd
     go build -o parserSrv parserSrv.go
 ```
 ##### 使用 parserSrv
 ```
-    cd $GOPATH/src/SQLParser/cmd
+    cd $GOPATH/src/github.com/naruto-june/SQLParser/cmd
     ./parserSrv >>nohup.out 2>&1 &
     curl -i "localhost:8000/sql/util/parser?" -d'select id from table_name where left(id,2)="te"'
 ```
 
 ##### 编译并安装 selecter库
 ```
-    cd $GOPATH/src/SQLParser/selecter
+    cd $GOPATH/src/github.com/naruto-june/SQLParser/selecter
     go install
 ```
 

@@ -1,12 +1,13 @@
 package main
 
 import (
-	"SQLParser/selecter"
 	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/naruto-june/SQLParser/selecter"
 )
 
 var (
