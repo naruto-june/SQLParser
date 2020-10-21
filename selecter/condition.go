@@ -214,15 +214,16 @@ func parseOneCond(tObj Tokens, logic string) (map[string]interface{}, error) {
 				return nil, errors.New("illegal value at end")
 			}
 			if len(items) == 3 { // like / is null
-				if "in" == items[1] {
+				op := strings.ToLower(items[1])
+				if "in" == op {
 					entElem[items[0]] = map[string]string{
 						"$in": items[2],
 					}
-				} else if "like" == items[1] {
+				} else if "like" == op {
 					entElem[items[0]] = map[string]string{
 						"$like": items[2],
 					}
-				} else if "is" == items[1] {
+				} else if "is" == op {
 					entElem[items[0]] = map[string]string{
 						"$is": items[2],
 					}
@@ -236,19 +237,21 @@ func parseOneCond(tObj Tokens, logic string) (map[string]interface{}, error) {
 				ret["entity"] = append(ret["entity"].([]map[string]interface{}), entElem)
 				entElem = make(map[string]interface{}, 0)
 			} else { // not like/ is not null
-				if "not" == items[1] {
-					if "in" == items[2] {
+				op1 := strings.ToLower(items[1])
+				op2 := strings.ToLower(items[2])
+				if "not" == op1 {
+					if "in" == op2 {
 						entElem[items[0]] = map[string]string{
 							"$nin": items[3],
 						}
-					} else if "like" == items[2] {
+					} else if "like" == op2 {
 						entElem[items[0]] = map[string]string{
 							"$nlike": items[3],
 						}
 					} else {
 						return nil, errors.New("like or in expected")
 					}
-				} else if "is" == items[1] && "not" == items[2] {
+				} else if "is" == op1 && "not" == op2 {
 					entElem[items[0]] = map[string]string{
 						"$nis": items[3],
 					}
