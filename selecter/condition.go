@@ -49,7 +49,7 @@ func parseCondition(tObj Tokens) ([]map[string]interface{}, int, error) {
 					}
 
 					ret = append(ret, pCond)
-					if lastIdx+1 < length && "by" == strings.ToLower(strings.Trim(tObj[lastIdx+1].Raw, " ")) {
+					if lastIdx+1 < length && "by" == strings.ToLower(strings.Trim(tObj[lastIdx+1].Raw, " ")) || "limit" == nextToken {
 						return ret, lastIdx, nil
 					}
 					break
@@ -209,7 +209,6 @@ func parseOneCond(tObj Tokens, logic string) (map[string]interface{}, error) {
 			}
 
 		over:
-
 			if len(items) != 3 && len(items) != 4 {
 				return nil, errors.New("illegal value at end")
 			}
